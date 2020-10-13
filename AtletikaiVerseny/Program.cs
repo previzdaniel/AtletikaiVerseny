@@ -32,7 +32,72 @@ namespace AtletikaiVerseny
 
         static void feladat3()
         {
+            List<string> egyesuletek = new List<string>();
+            Console.WriteLine("\n3. feladat: Egyesületek:\n");
+            foreach (var a in atletak)
+            {
+                if (!egyesuletek.Contains(a.Egyesulet))
+                {
+                    egyesuletek.Add(a.Egyesulet);
+                }
+            }
+            for (int i = 0; i < egyesuletek.Count; i++)
+            {
+                Console.WriteLine(egyesuletek[i]);
+            }
+        }
 
+        static void feladat4()
+        {
+            Console.WriteLine("\n4. feladat: Legnagyobb ugrás:");
+            int max = 0;
+            foreach (var a in atletak)
+            {
+                if (a.Ugras > max)
+                {
+                    max = a.Ugras;
+                }
+            }
+
+            foreach (var a in atletak)
+            {
+                if (max == a.Ugras)
+                {
+                    Console.WriteLine(a.TeljesNev + " " + a.Ugras);
+                }
+            }
+        }
+
+        static void feladat5()
+        {
+            double db = 0;
+            int osszes = 0;
+            foreach (var a in atletak)
+            {
+                osszes += a.Ugras;
+                db++;
+            }
+            double atlag = osszes / db;
+            db = 0;
+            foreach (var a in atletak)
+            {
+                if (a.Ugras < atlag)
+                {
+                    db++;
+                }
+            }
+            Console.WriteLine("\n5. feladat: Az átlag alatti ugrások száma: {0}",db);
+        }
+
+        static void feladat6()
+        {
+            Console.WriteLine("6. feladat: adatok fájlba írása");
+            StreamWriter file = new StreamWriter("versenyzok.txt");
+            for (int i = 0; i < atletak.Count; i++)
+            {
+                file.WriteLine(atletak[i].Rajtszam + ";" + atletak[i].TeljesNev);
+            }
+            file.Close();
         }
 
         static void Main(string[] args)
@@ -40,6 +105,9 @@ namespace AtletikaiVerseny
             Beolvas();
             feladat2();
             feladat3();
+            feladat4();
+            feladat5();
+            feladat6();
             //Atleta a = new Atleta("623;Ug Imre;Kalocsai Rozmarok;640");
 
             Console.ReadKey();
