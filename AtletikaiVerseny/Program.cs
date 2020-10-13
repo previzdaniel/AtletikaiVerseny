@@ -70,15 +70,13 @@ namespace AtletikaiVerseny
 
         static void feladat5()
         {
-            double db = 0;
             int osszes = 0;
             foreach (var a in atletak)
             {
                 osszes += a.Ugras;
-                db++;
             }
-            double atlag = osszes / db;
-            db = 0;
+            double atlag = osszes / atletak.Count;
+            int db = 0;
             foreach (var a in atletak)
             {
                 if (a.Ugras < atlag)
@@ -108,7 +106,6 @@ namespace AtletikaiVerseny
             feladat4();
             feladat5();
             feladat6();
-            //Atleta a = new Atleta("623;Ug Imre;Kalocsai Rozmarok;640");
 
             Console.ReadKey();
         }
